@@ -92,7 +92,6 @@ class Controller(QMainWindow, Ui_MainWindow):
                     float(bookmark)
                     self.label_bookmark_prompt.setText('Enter valid answer (Y/N)')
                 except ValueError:
-                    self.label_bookmark_prompt.setText('Enter valid answer (Y/N)')
                     bookmark = self.entry_bookmark.text().upper().strip()
                     if bookmark == 'Y' or bookmark == 'N':
                         self.entry_bookmark.clear()
@@ -101,12 +100,14 @@ class Controller(QMainWindow, Ui_MainWindow):
                             self.prev_dial.append(dial)
                             self.label_bookmark_prompt.setText(f'Channel {channel} successfully saved')
                         elif bookmark == 'N':
+                            self.label_bookmark_prompt.clear()
                             if self.prev_dial:
                                 dial = self.prev_dial[-1]
                         self.label_status.setText(f'Power: ON\nVolume: {volume}\nChannel: {channel}\nBookmark: {dial}')
 
                     else:
-                        self.label_bookmark_prompt.setText('Enter valid answer (Y/N)')
+                        if bookmark != '':
+                            self.label_bookmark_prompt.setText('Enter valid answer (Y/N)')
 
         else:
             self.entry_bookmark.setDisabled(True)
