@@ -6,9 +6,18 @@ QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
 
 
 class Controller(QMainWindow, Ui_MainWindow):
+    """
+    A class representing the remote control GUI
+    """
+    # List for dial entry created outside of methods to function properly
     prev_dial = ['None']
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
+        """
+        Method to set up GUI
+        :param args: Allows non-keyword arguments to pass
+        :param kwargs: Allows keyword arguments to pass
+        """
         super().__init__(*args, **kwargs)
         self.setupUi(self)
         self.push_status.clicked.connect(lambda: self.status())
@@ -27,7 +36,11 @@ class Controller(QMainWindow, Ui_MainWindow):
         self.dial_channel.setDisabled(True)
         self.entry_bookmark.setDisabled(True)
 
-    def status(self):
+    def status(self) -> None:
+        """
+        Method that handles status prompt in GUI when clicked.
+        :return: TV Status when exception is triggered, otherwise return invalid entry message to user.
+        """
         power = self.slider_power.value()
         channel = self.dial_channel.value()
         bookmark = self.entry_bookmark.text()
