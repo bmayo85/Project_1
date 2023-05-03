@@ -121,12 +121,14 @@ class Controller(QMainWindow, Ui_MainWindow):
                     else:
                         if bookmark != '':
                             self.label_bookmark_prompt.setText('Enter valid answer (Y/N)')
+                        if bookmark == '':
+                            self.label_bookmark_prompt.setText('Please enter response.')
 
         else:
             self.entry_bookmark.setDisabled(True)
             self.entry_bookmark.clear()
             self.label_bookmark_prompt.clear()
-            self.label_status.clear()
+            self.label_status.setText('Power: OFF')
             self.radio_0.setDisabled(True)
             self.radio_10.setDisabled(True)
             self.radio_20.setDisabled(True)
