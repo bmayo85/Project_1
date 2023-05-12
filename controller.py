@@ -51,7 +51,7 @@ class Controller(QMainWindow, Ui_MainWindow):
         elif channel == 3:
             self.show_cartoon()
 
-    def toggle_volume(self):
+    def toggle_volume(self) -> None:
         """
         Method to handle mute button connection
         """
